@@ -18,25 +18,33 @@ jobs:
     name: Build Debug APK
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: EnglishWordsTrainer
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show repository root
+      - name: Show project files
         run: |
           pwd
           ls -la
+          echo "----- gradle.properties -----"
+          cat gradle.properties
+          echo "----- app -----"
+          ls -la app
 
       - name: Force correct Gradle properties
         run: |
           cat > gradle.properties <<'EOF'
-          org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
-          android.useAndroidX=true
-          kotlin.code.style=official
-          android.nonTransitiveRClass=true
-          EOF
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+kotlin.code.style=official
+android.nonTransitiveRClass=true
+EOF
 
-          echo "----- gradle.properties -----"
+          echo "----- forced gradle.properties -----"
           cat gradle.properties
 
       - name: Set up Java 17
@@ -58,4 +66,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: EnglishWordsTrainer-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: EnglishWordsTrainer/app/build/outputs/apk/debug/app-debug.apk
