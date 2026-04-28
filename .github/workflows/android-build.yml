@@ -30,21 +30,21 @@ jobs:
         run: |
           pwd
           ls -la
-          echo "----- gradle.properties -----"
-          cat gradle.properties
+          echo "----- gradle.properties before -----"
+          cat gradle.properties || true
           echo "----- app -----"
           ls -la app
 
       - name: Force correct Gradle properties
         run: |
-          cat > gradle.properties <<'EOF'
-org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
-android.useAndroidX=true
-kotlin.code.style=official
-android.nonTransitiveRClass=true
-EOF
+          printf "%s\n" \
+            "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8" \
+            "android.useAndroidX=true" \
+            "kotlin.code.style=official" \
+            "android.nonTransitiveRClass=true" \
+            > gradle.properties
 
-          echo "----- forced gradle.properties -----"
+          echo "----- gradle.properties after -----"
           cat gradle.properties
 
       - name: Set up Java 17
