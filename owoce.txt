@@ -1,0 +1,15 @@
+jabłko:apple
+banan:banana
+pomarańcza:orange
+gruszka:pear
+truskawka:strawberry
+winogrono:grape
+cytryna:lemon
+arbuz:watermelon
+brzoskwinia:peach
+śliwka:plum
+ananas:pineapple
+malina:raspberry
+borówka:blueberry
+wiśnia:cherry
+kokos:coconut
