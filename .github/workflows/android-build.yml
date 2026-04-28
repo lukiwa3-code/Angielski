@@ -22,6 +22,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Show repository root
+        run: |
+          pwd
+          ls -la
+
+      - name: Force correct Gradle properties
+        run: |
+          cat > gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+          android.useAndroidX=true
+          kotlin.code.style=official
+          android.nonTransitiveRClass=true
+          EOF
+
+          echo "----- gradle.properties -----"
+          cat gradle.properties
+
       - name: Set up Java 17
         uses: actions/setup-java@v4
         with:
@@ -37,6 +54,7 @@ jobs:
         run: gradle assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: EnglishWordsTrainer-debug-apk
