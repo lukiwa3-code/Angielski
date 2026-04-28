@@ -1,0 +1,15 @@
+pies:dog
+kot:cat
+koń:horse
+krowa:cow
+owca:sheep
+koza:goat
+ptak:bird
+ryba:fish
+lew:lion
+tygrys:tiger
+słoń:elephant
+małpa:monkey
+królik:rabbit
+lis:fox
+niedźwiedź:bear
