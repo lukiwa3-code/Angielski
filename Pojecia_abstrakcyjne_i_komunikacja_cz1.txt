@@ -1,0 +1,20 @@
+akcent:accent
+kwas:acid
+cios, uderzenie:blow
+mistrzostwa:championship
+urzędnik, pracownik biurowy:clerk
+klips, fragment:clip
+związek, kompleks:compound
+spisek, konspiracja:conspiracy
+kontrowersja, spór:controversy
+wygoda, udogodnienie:convenience
+konwencja, zwyczaj:convention
+lada, blat:counter (long flat surface)
+program nauczania:curriculum
+ciemność, mrok:darkness
+termin, ostateczny termin:deadline
+pokład, talia kart:deck
+wyjście:exit
+opłata za przejazd:fare
+fundament, fundacja:foundation
+fragment:fragment

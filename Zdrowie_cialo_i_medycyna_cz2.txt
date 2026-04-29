@@ -1,0 +1,12 @@
+otyłość:obesity
+dłoń, palma:palm
+panika:panic
+tabletka, pigułka:pill
+psychologiczny:psychological
+uspokojony, odczuwający ulgę:relieved
+chirurg:surgeon
+połykać, jaskółka:swallow
+terapeuta:therapist
+kciuk:thumb
+tkanka, chusteczka:tissue
+nadgarstek:wrist

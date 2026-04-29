@@ -1,0 +1,20 @@
+inwestor:investor
+produkować, wytwarzać:manufacture
+produkcja, przemysł wytwórczy:manufacturing
+margines, marża:margin
+kredyt hipoteczny, hipoteka:mortgage
+zawód, okupacja:occupation
+operator:operator
+wynik, produkcja:output
+własność, posiadanie:ownership
+partnerstwo, spółka:partnership
+umieszczenie, staż:placement
+awans, promocja:promotion
+rekrutacja:recruitment
+handel detaliczny, detaliczny:retail
+emerytura, przejście na emeryturę:retirement
+przychód, dochód:revenue
+handel:trading
+siła robocza, pracownicy:workforce
+miejsce pracy:workplace
+warsztat, szkolenie:workshop

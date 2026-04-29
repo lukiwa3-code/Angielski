@@ -1,0 +1,13 @@
+kabina, domek:cabin
+kanał:canal
+centrum miasta, śródmieście:downtown
+port:harbour
+autostrada, droga szybkiego ruchu:highway
+odrzutowiec:jet
+lądowanie:landing
+pas ruchu, alejka:lane
+za granicą, zamorski:overseas
+parada:parade
+szyna, kolej:rail
+transport:transportation
+wiza:visa

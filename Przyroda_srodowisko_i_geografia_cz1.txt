@@ -1,0 +1,20 @@
+rolnictwo:agriculture
+kosmita, obcy:alien
+biologiczny:biological
+jaskinia:cave
+klif, urwisko:cliff
+ochrona, konserwacja:conservation
+nabiał, mleczarski:dairy
+różnorodny:diverse
+różnorodność:diversity
+susza:drought
+emisja:emission
+wybuchnąć, wytrysnąć:erupt
+egzotyczny:exotic
+globus, kula ziemska:globe
+szklarnia:greenhouse
+siedlisko, habitat:habitat
+zioło:herb
+mieszkaniec:inhabitant
+odizolowany, pojedynczy:isolated
+pobliskie, w pobliżu:nearby
