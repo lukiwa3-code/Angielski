@@ -1,0 +1,20 @@
+logo:logo
+mechanizm:mechanism
+tryb, sposób:mode
+nawigacja:navigation
+tlen:oxygen
+hasło:password
+prawdopodobieństwo:probability
+prawdopodobny:probable
+programowanie:programming
+promieniowanie:radiation
+odbudować:rebuild
+odbiornik, odbiorca:receiver
+rezolucja, rozwiązanie:resolution
+przywrócić, odnowić:restore
+technologiczny:technological
+testowanie, badanie:testing
+przekazywać, transmitować:transmit
+bilion:trillion
+wariacja, odmiana:variation
+pionowy:vertical

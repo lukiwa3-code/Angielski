@@ -1,0 +1,20 @@
+aktywować, uruchomić:activate
+dźwiękowy, audio:audio
+automatyczny:automatic
+automatycznie:automatically
+robak, błąd:bug
+węgiel:carbon
+obwód, tor:circuit
+baza danych:database
+usunąć, skasować:delete
+elektronika:electronics
+wyposażyć:equip
+odpowiednik, równoważny:equivalent
+ewolucja:evolution
+ewoluować, rozwijać się:evolve
+format:format
+skamielina:fossil
+ułamek, część:fraction
+ramy, struktura:framework
+gen:gene
+genetyczny:genetic

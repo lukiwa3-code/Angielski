@@ -1,0 +1,20 @@
+AIDS:AIDS
+karetka, ambulans:ambulance
+niepokój, lęk:anxiety
+policzek:cheek
+klinika, przychodnia:clinic
+depresja, spadek:depression
+niepełnosprawność:disability
+niepełnosprawny:disabled
+zaburzenie, nieporządek:disorder
+łokieć:elbow
+gorączka:fever
+leczyć, goić się:heal
+opieka zdrowotna:healthcare
+kask, hełm:helmet
+biodro:hip
+głód:hunger
+odporny:immune
+lek, lekarstwo:medication
+pielęgniarski, opiekuńczy:nursing
+odżywianie, żywienie:nutrition

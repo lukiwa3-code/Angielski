@@ -1,0 +1,20 @@
+przodek:ancestor
+pomoc, wsparcie:assistance
+kolekcjoner, poborca:collector
+konsultant, doradca:consultant
+obrońca:defender
+strażak:firefighter
+głupiec, oszukać:fool
+geniusz:genius
+dobroć:goodness
+historyk:historian
+bezdomny:homeless
+inspektor:inspector
+intelektualny:intellectual
+mechanik:mechanic
+górnik:miner
+obserwator:observer
+rówieśnik, kolega:peer
+sędzia:referee
+rywal, konkurencyjny:rival
+uczony, stypendysta:scholar

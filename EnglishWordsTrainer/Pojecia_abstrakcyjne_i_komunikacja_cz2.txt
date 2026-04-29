@@ -1,0 +1,20 @@
+płeć społeczno-kulturowa, płeć:gender
+gest:gesture
+koncert, zlecenie:gig
+globalizacja:globalization
+loteria:lottery
+tworzenie, produkcja:making
+członkostwo:membership
+potwór:monster
+meczet:mosque
+ruch, wniosek:motion
+motywacja:motivation
+konieczność, potrzeba:necessity
+negocjacja:negotiation
+przeszkoda:obstacle
+udział, uczestnictwo:participation
+cierpliwość:patience
+kara, rzut karny:penalty
+litość, szkoda:pity
+proporcja, część:proportion
+recesja:recession

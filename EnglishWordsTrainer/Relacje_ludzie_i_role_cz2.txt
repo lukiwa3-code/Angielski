@@ -1,0 +1,8 @@
+poszukiwacz:seeker
+rodzeństwo, brat lub siostra:sibling
+rzecznik:spokesman
+rzecznik, osoba rzecznicza:spokesperson
+rzeczniczka:spokeswoman
+ocalały, osoba, która przeżyła:survivor
+nastolatki, lata nastoletnie:teens
+ktokolwiek:whoever

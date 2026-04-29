@@ -1,0 +1,20 @@
+strzała, strzałka:arrow
+załącznik, przywiązanie:attachment
+odznaka, identyfikator:badge
+balon:balloon
+piwnica:basement
+kosz:basket
+nietoperz, kij:bat
+koc:blanket
+cegła:brick
+świeca:candle
+certyfikat, zaświadczenie:certificate
+korytarz:corridor
+kropka, punkt:dot
+koperta:envelope
+wyciąg, ekstrakt:extract
+tkanina, materiał:fabric
+smak, aromat:flavour
+hak, haczyk:hook
+atrament, tusz:ink
+zestaw, komplet:kit
