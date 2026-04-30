@@ -1,4 +1,1 @@
-https://github.com/lukiwa3-code/Angielski/blob/main/Cechy_opisy_i_oceny_cz1.txt
-https://github.com/lukiwa3-code/Angielski/blob/main/Cechy_opisy_i_oceny_cz2.txt
-https://github.com/lukiwa3-code/Angielski/blob/main/Cechy_opisy_i_oceny_cz3.txt
-https://github.com/lukiwa3-code/Angielski/blob/main/Cechy_opisy_i_oceny_cz4.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/Kultura_media_i_sztuka_cz1.txt
