@@ -763,6 +763,8 @@ fun SettingSwitchRow(
             onCheckedChange = onCheckedChange
         )
     }
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LearningScreen(
@@ -1742,7 +1744,4 @@ fun levenshteinDistance(
     return previous[second.length]
 }
 
-// KONIEC CZĘŚCI 2/2
-}
 
-// KONIEC CZĘŚCI 1/2
