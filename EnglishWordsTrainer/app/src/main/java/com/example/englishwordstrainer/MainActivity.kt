@@ -67,6 +67,8 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import kotlin.math.min
 
@@ -131,41 +133,84 @@ class VocabularyStore(private val context: Context) {
     private val prefs = context.getSharedPreferences("vocabulary_store", Context.MODE_PRIVATE)
 
     fun loadSettings(): AppSettings {
-    val modeName = prefs.getString("sourceMode", SourceMode.GITHUB.name)
-        ?: SourceMode.GITHUB.name
+        val modeName = prefs.getString("sourceMode", SourceMode.GITHUB.name)
+            ?: SourceMode.GITHUB.name
 
-    val savedGithubIndexUrl = prefs.getString("githubIndexUrl", null)
-        ?.trim()
-        .orEmpty()
-        .ifBlank {
-            DEFAULT_GITHUB_INDEX_URL
-        }
+        val savedGithubIndexUrl = prefs.getString("githubIndexUrl", null)
+            ?.trim()
+            .orEmpty()
+            .ifBlank {
+                DEFAULT_GITHUB_INDEX_URL
+            }
 
-    return AppSettings(
-        caseSensitive = prefs.getBoolean("caseSensitive", false),
-        acceptTypos = prefs.getBoolean("acceptTypos", true),
-        sourceMode = runCatching {
-            SourceMode.valueOf(modeName)
-        }.getOrDefault(SourceMode.GITHUB),
-        githubIndexUrl = savedGithubIndexUrl,
-        folderUri = prefs.getString("folderUri", "") ?: ""
-    )
-}
+        return AppSettings(
+            caseSensitive = prefs.getBoolean("caseSensitive", false),
+            acceptTypos = prefs.getBoolean("acceptTypos", true),
+            sourceMode = runCatching {
+                SourceMode.valueOf(modeName)
+            }.getOrDefault(SourceMode.GITHUB),
+            githubIndexUrl = savedGithubIndexUrl,
+            folderUri = prefs.getString("folderUri", "") ?: ""
+        )
+    }
+
     fun saveSettings(settings: AppSettings) {
         val fixedSettings = settings.copy(
-        githubIndexUrl = settings.githubIndexUrl.trim().ifBlank {
-            DEFAULT_GITHUB_INDEX_URL
-        }
-    )
+            githubIndexUrl = settings.githubIndexUrl.trim().ifBlank {
+                DEFAULT_GITHUB_INDEX_URL
+            }
+        )
 
-    prefs.edit()
-        .putBoolean("caseSensitive", fixedSettings.caseSensitive)
-        .putBoolean("acceptTypos", fixedSettings.acceptTypos)
-        .putString("sourceMode", fixedSettings.sourceMode.name)
-        .putString("githubIndexUrl", fixedSettings.githubIndexUrl)
-        .putString("folderUri", fixedSettings.folderUri)
-        .apply()
-}
+        prefs.edit()
+            .putBoolean("caseSensitive", fixedSettings.caseSensitive)
+            .putBoolean("acceptTypos", fixedSettings.acceptTypos)
+            .putString("sourceMode", fixedSettings.sourceMode.name)
+            .putString("githubIndexUrl", fixedSettings.githubIndexUrl)
+            .putString("folderUri", fixedSettings.folderUri)
+            .apply()
+    }
+
+    fun loadCompletedDictionaries(): Map<String, String> {
+        val raw = prefs.getString("completedDictionaries", "{}") ?: "{}"
+        val result = mutableMapOf<String, String>()
+
+        runCatching {
+            val json = JSONObject(raw)
+            val keys = json.keys()
+
+            while (keys.hasNext()) {
+                val key = keys.next()
+                val value = json.optString(key).trim()
+
+                if (key.isNotBlank() && value.isNotBlank()) {
+                    result[key] = value
+                }
+            }
+        }
+
+        return result
+    }
+
+    fun markDictionaryCompleted(dictionary: DictionaryBundle) {
+        val currentRaw = prefs.getString("completedDictionaries", "{}") ?: "{}"
+
+        val json = runCatching {
+            JSONObject(currentRaw)
+        }.getOrElse {
+            JSONObject()
+        }
+
+        val completedAt = SimpleDateFormat(
+            "yyyy-MM-dd HH:mm",
+            Locale.getDefault()
+        ).format(Date())
+
+        json.put(dictionary.id, completedAt)
+
+        prefs.edit()
+            .putString("completedDictionaries", json.toString())
+            .apply()
+    }
 
     fun loadCreativeWords(): List<WordEntry> {
         val raw = prefs.getString("creativeWords", "[]") ?: "[]"
@@ -252,9 +297,11 @@ fun WordTrainerApp() {
     var status by remember {
         mutableStateOf("")
     }
-
     var creativeRefresh by remember {
-        mutableIntStateOf(0)
+    mutableIntStateOf(0)
+    }
+    var completedDictionaries by remember {
+    mutableStateOf(store.loadCompletedDictionaries())
     }
 
     fun reloadDictionariesWith(newSettings: AppSettings) {
@@ -366,6 +413,7 @@ fun WordTrainerApp() {
                 AppScreen.Home -> HomeScreen(
                     dictionaries = dictionaries,
                     creativeDictionaries = creativeDictionaries,
+                    completedDictionaries = completedDictionaries,
                     loading = loading,
                     status = status,
                     onReload = {
@@ -404,18 +452,22 @@ fun WordTrainerApp() {
                     }
                 )
 
-                is AppScreen.Learn -> LearningScreen(
-                    dictionary = currentScreen.dictionary,
-                    settings = settings,
-                    store = store,
-                    onExit = {
-                        creativeRefresh++
-                        screen = AppScreen.Home
-                    },
-                    onCreativeChanged = {
-                        creativeRefresh++
-                    }
-                )
+````````````````is AppScreen.Learn -> LearningScreen(
+    dictionary = currentScreen.dictionary,
+    settings = settings,
+    store = store,
+    onExit = {
+        completedDictionaries = store.loadCompletedDictionaries()
+        creativeRefresh++
+        screen = AppScreen.Home
+    },
+    onCreativeChanged = {
+        creativeRefresh++
+    },
+    onDictionaryCompleted = {
+        completedDictionaries = store.loadCompletedDictionaries()
+    }
+)
 
                 AppScreen.TestSetup -> TestSetupScreen(
                     dictionaries = dictionaries,
@@ -446,6 +498,7 @@ fun WordTrainerApp() {
 fun HomeScreen(
     dictionaries: List<DictionaryBundle>,
     creativeDictionaries: List<DictionaryBundle>,
+    completedDictionaries: Map<String, String>,
     loading: Boolean,
     status: String,
     onReload: () -> Unit,
@@ -507,12 +560,35 @@ fun HomeScreen(
             items(dictionaries) { dictionary ->
                 DictionaryCard(
                     dictionary = dictionary,
+                    completionDate = completedDictionaries[dictionary.id],
                     onLearn = {
                         onLearn(dictionary)
                     }
                 )
             }
         }
+
+        item {
+            SectionTitle("Kreatywne słowniki błędów")
+        }
+
+        if (creativeDictionaries.isEmpty()) {
+            item {
+                Text("Na razie brak błędnie odpowiedzianych słówek.")
+            }
+        } else {
+            items(creativeDictionaries) { dictionary ->
+                DictionaryCard(
+                    dictionary = dictionary,
+                    completionDate = completedDictionaries[dictionary.id],
+                    onLearn = {
+                        onLearn(dictionary)
+                    }
+                )
+            }
+        }
+    }
+}
 
         item {
             SectionTitle("Kreatywne słowniki błędów")
@@ -538,6 +614,7 @@ fun HomeScreen(
 @Composable
 fun DictionaryCard(
     dictionary: DictionaryBundle,
+    completionDate: String?,
     onLearn: () -> Unit
 ) {
     ElevatedCard(
@@ -555,16 +632,31 @@ fun DictionaryCard(
 
             Text("Liczba słówek: ${dictionary.words.size}")
 
+            if (!completionDate.isNullOrBlank()) {
+                Text(
+                    text = "Zaliczone ✔️",
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary
+                )
+
+                Text("Data zaliczenia: $completionDate")
+            }
+
             Button(
                 onClick = onLearn,
                 enabled = dictionary.words.isNotEmpty()
             ) {
-                Text("Rozpocznij naukę")
+                Text(
+                    if (completionDate.isNullOrBlank()) {
+                        "Rozpocznij naukę"
+                    } else {
+                        "Powtórz naukę"
+                    }
+                )
             }
         }
     }
 }
-
 @Composable
 fun SettingsScreen(
     settings: AppSettings,
@@ -772,7 +864,8 @@ fun LearningScreen(
     settings: AppSettings,
     store: VocabularyStore,
     onExit: () -> Unit,
-    onCreativeChanged: () -> Unit
+    onCreativeChanged: () -> Unit,
+    onDictionaryCompleted: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val answerBringIntoViewRequester = remember {
@@ -828,6 +921,11 @@ fun LearningScreen(
     }
 
     fun activeWords(): List<WordEntry> {
+        fun isFullyMastered(): Boolean {
+    return dictionary.words.isNotEmpty() && dictionary.words.all { word ->
+        (streaks[word.key] ?: 0) >= 3
+    }
+}
         return dictionary.words.filter { word ->
             val streak = streaks[word.key] ?: 0
             val hidden = hiddenWords[word.key] == true
@@ -848,10 +946,15 @@ fun LearningScreen(
 
         val nextActiveWords = activeWords()
 
-        if (nextActiveWords.isEmpty()) {
-            completed = true
-            return
-        }
+       if (nextActiveWords.isEmpty()) {
+    if (isFullyMastered()) {
+        store.markDictionaryCompleted(dictionary)
+        onDictionaryCompleted()
+    }
+
+    completed = true
+    return
+}
 
         seriesNumber++
         roundWords = nextActiveWords.shuffled()
