@@ -70,6 +70,9 @@ import java.net.URL
 import java.util.Locale
 import kotlin.math.min
 
+private const val DEFAULT_GITHUB_INDEX_URL =
+    "https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/index.txt"
+
 enum class SourceMode {
     GITHUB,
     FOLDER
@@ -79,7 +82,7 @@ data class AppSettings(
     val caseSensitive: Boolean = false,
     val acceptTypos: Boolean = true,
     val sourceMode: SourceMode = SourceMode.GITHUB,
-    val githubIndexUrl: String = "",
+    val githubIndexUrl: String = DEFAULT_GITHUB_INDEX_URL,
     val folderUri: String = ""
 )
 
@@ -131,24 +134,35 @@ class VocabularyStore(private val context: Context) {
         val modeName = prefs.getString("sourceMode", SourceMode.GITHUB.name)
             ?: SourceMode.GITHUB.name
 
+        val savedGithubIndexUrl = prefs.getString("githubIndexUrl", null)
+            ?.trim()
+            .orEmpty()
+            .ifBlank { DEFAULT_GITHUB_INDEX_URL }
+
         return AppSettings(
             caseSensitive = prefs.getBoolean("caseSensitive", false),
             acceptTypos = prefs.getBoolean("acceptTypos", true),
             sourceMode = runCatching {
                 SourceMode.valueOf(modeName)
             }.getOrDefault(SourceMode.GITHUB),
-            githubIndexUrl = prefs.getString("githubIndexUrl", "") ?: "",
+            githubIndexUrl = savedGithubIndexUrl,
             folderUri = prefs.getString("folderUri", "") ?: ""
         )
     }
 
     fun saveSettings(settings: AppSettings) {
+        val fixedSettings = settings.copy(
+            githubIndexUrl = settings.githubIndexUrl.trim().ifBlank {
+                DEFAULT_GITHUB_INDEX_URL
+            }
+        )
+
         prefs.edit()
-            .putBoolean("caseSensitive", settings.caseSensitive)
-            .putBoolean("acceptTypos", settings.acceptTypos)
-            .putString("sourceMode", settings.sourceMode.name)
-            .putString("githubIndexUrl", settings.githubIndexUrl)
-            .putString("folderUri", settings.folderUri)
+            .putBoolean("caseSensitive", fixedSettings.caseSensitive)
+            .putBoolean("acceptTypos", fixedSettings.acceptTypos)
+            .putString("sourceMode", fixedSettings.sourceMode.name)
+            .putString("githubIndexUrl", fixedSettings.githubIndexUrl)
+            .putString("folderUri", fixedSettings.folderUri)
             .apply()
     }
 
@@ -247,10 +261,16 @@ fun WordTrainerApp() {
             loading = true
             status = "Ładowanie słowników..."
 
+            val fixedSettings = newSettings.copy(
+                githubIndexUrl = newSettings.githubIndexUrl.trim().ifBlank {
+                    DEFAULT_GITHUB_INDEX_URL
+                }
+            )
+
             val result = runCatching {
                 loadDictionaries(
                     context = context,
-                    settings = newSettings
+                    settings = fixedSettings
                 )
             }
 
@@ -259,7 +279,7 @@ fun WordTrainerApp() {
                     dictionaries = loadedDictionaries
 
                     status = if (loadedDictionaries.isEmpty()) {
-                        when (newSettings.sourceMode) {
+                        when (fixedSettings.sourceMode) {
                             SourceMode.GITHUB -> {
                                 "Nie znaleziono słowników. Sprawdź link RAW do index.txt."
                             }
@@ -278,7 +298,7 @@ fun WordTrainerApp() {
                     status = buildString {
                         append("Nie udało się załadować słowników. ")
 
-                        when (newSettings.sourceMode) {
+                        when (fixedSettings.sourceMode) {
                             SourceMode.GITHUB -> {
                                 append("Sprawdź, czy link prowadzi do RAW index.txt. ")
                             }
@@ -367,10 +387,16 @@ fun WordTrainerApp() {
                         screen = AppScreen.Home
                     },
                     onSave = { newSettings ->
-                        settings = newSettings
-                        store.saveSettings(newSettings)
+                        val fixedSettings = newSettings.copy(
+                            githubIndexUrl = newSettings.githubIndexUrl.trim().ifBlank {
+                                DEFAULT_GITHUB_INDEX_URL
+                            }
+                        )
+
+                        settings = fixedSettings
+                        store.saveSettings(fixedSettings)
                         screen = AppScreen.Home
-                        reloadDictionariesWith(newSettings)
+                        reloadDictionariesWith(fixedSettings)
                     },
                     onPickFolder = {
                         folderPicker.launch(null)
@@ -558,7 +584,9 @@ fun SettingsScreen(
     }
 
     var githubIndexUrl by remember {
-        mutableStateOf(settings.githubIndexUrl)
+        mutableStateOf(settings.githubIndexUrl.trim().ifBlank {
+            DEFAULT_GITHUB_INDEX_URL
+        })
     }
 
     var folderUri by remember {
@@ -642,7 +670,7 @@ fun SettingsScreen(
                     Text("URL do index.txt na GitHub/raw")
                 },
                 placeholder = {
-                    Text("https://raw.githubusercontent.com/user/repo/main/index.txt")
+                    Text(DEFAULT_GITHUB_INDEX_URL)
                 }
             )
         }
@@ -692,7 +720,9 @@ fun SettingsScreen(
                                 caseSensitive = caseSensitive,
                                 acceptTypos = acceptTypos,
                                 sourceMode = sourceMode,
-                                githubIndexUrl = githubIndexUrl.trim(),
+                                githubIndexUrl = githubIndexUrl.trim().ifBlank {
+                                    DEFAULT_GITHUB_INDEX_URL
+                                },
                                 folderUri = folderUri.trim()
                             )
                         )
@@ -730,8 +760,6 @@ fun SettingSwitchRow(
             onCheckedChange = onCheckedChange
         )
     }
-}
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LearningScreen(
@@ -1384,11 +1412,11 @@ suspend fun loadDictionaries(
     return withContext(Dispatchers.IO) {
         when (settings.sourceMode) {
             SourceMode.GITHUB -> {
-                if (settings.githubIndexUrl.isBlank()) {
-                    demoDictionaries()
-                } else {
-                    loadGithubDictionaries(settings.githubIndexUrl)
+                val indexUrl = settings.githubIndexUrl.trim().ifBlank {
+                    DEFAULT_GITHUB_INDEX_URL
                 }
+
+                loadGithubDictionaries(indexUrl)
             }
 
             SourceMode.FOLDER -> {
@@ -1710,3 +1738,8 @@ fun levenshteinDistance(
 
     return previous[second.length]
 }
+
+// KONIEC CZĘŚCI 2/2
+}
+
+// KONIEC CZĘŚCI 1/2
