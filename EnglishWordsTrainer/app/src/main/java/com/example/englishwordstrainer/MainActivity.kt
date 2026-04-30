@@ -580,13 +580,14 @@ fun HomeScreen(
             }
         } else {
             items(creativeDictionaries) { dictionary ->
-                DictionaryCard(
-                    dictionary = dictionary,
-                    onLearn = {
-                        onLearn(dictionary)
-                    }
-                )
-            }
+    DictionaryCard(
+        dictionary = dictionary,
+        completionDate = completedDictionaries[dictionary.id],
+        onLearn = {
+            onLearn(dictionary)
+        }
+    )
+}
         }
     }
 }
