@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,9 +16,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.relocation.BringIntoViewRequester
+import androidx.compose.foundation.relocation.bringIntoViewRequester
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -36,22 +41,24 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.documentfile.provider.DocumentFile
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
@@ -240,13 +247,53 @@ fun WordTrainerApp() {
             loading = true
             status = "Ładowanie słowników..."
 
-            dictionaries = loadDictionaries(
-                context = context,
-                settings = newSettings
-            )
+            val result = runCatching {
+                loadDictionaries(
+                    context = context,
+                    settings = newSettings
+                )
+            }
+
+            result
+                .onSuccess { loadedDictionaries ->
+                    dictionaries = loadedDictionaries
+
+                    status = if (loadedDictionaries.isEmpty()) {
+                        when (newSettings.sourceMode) {
+                            SourceMode.GITHUB -> {
+                                "Nie znaleziono słowników. Sprawdź link RAW do index.txt."
+                            }
+
+                            SourceMode.FOLDER -> {
+                                "Nie znaleziono plików .txt w wybranym folderze."
+                            }
+                        }
+                    } else {
+                        "Załadowano słowników: ${loadedDictionaries.size}"
+                    }
+                }
+                .onFailure { error ->
+                    dictionaries = emptyList()
+
+                    status = buildString {
+                        append("Nie udało się załadować słowników. ")
+
+                        when (newSettings.sourceMode) {
+                            SourceMode.GITHUB -> {
+                                append("Sprawdź, czy link prowadzi do RAW index.txt. ")
+                            }
+
+                            SourceMode.FOLDER -> {
+                                append("Sprawdź wybrany folder. ")
+                            }
+                        }
+
+                        append("Błąd: ")
+                        append(error.message ?: error::class.java.simpleName)
+                    }
+                }
 
             loading = false
-            status = "Załadowano słowników: ${dictionaries.size}"
         }
     }
 
@@ -521,6 +568,8 @@ fun SettingsScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .imePadding()
+            .navigationBarsPadding()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
@@ -683,6 +732,7 @@ fun SettingSwitchRow(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LearningScreen(
     dictionary: DictionaryBundle,
@@ -691,6 +741,11 @@ fun LearningScreen(
     onExit: () -> Unit,
     onCreativeChanged: () -> Unit
 ) {
+    val scope = rememberCoroutineScope()
+    val answerBringIntoViewRequester = remember {
+        BringIntoViewRequester()
+    }
+
     val streaks: SnapshotStateMap<String, Int> = remember(dictionary.id) {
         mutableStateMapOf<String, Int>().apply {
             dictionary.words.forEach { word ->
@@ -835,6 +890,8 @@ fun LearningScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .imePadding()
+            .navigationBarsPadding()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
@@ -894,15 +951,30 @@ fun LearningScreen(
 
             item {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .bringIntoViewRequester(answerBringIntoViewRequester),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .onFocusChanged { focusState ->
+                                if (focusState.isFocused) {
+                                    scope.launch {
+                                        delay(300)
+                                        answerBringIntoViewRequester.bringIntoView()
+                                    }
+                                }
+                            },
                         value = answer,
                         onValueChange = {
                             answer = it
+
+                            scope.launch {
+                                answerBringIntoViewRequester.bringIntoView()
+                            }
                         },
                         singleLine = true,
                         label = {
@@ -1026,6 +1098,7 @@ fun TestSetupScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TestRunScreen(
     dictionaries: List<DictionaryBundle>,
@@ -1033,6 +1106,11 @@ fun TestRunScreen(
     store: VocabularyStore,
     onExit: () -> Unit
 ) {
+    val scope = rememberCoroutineScope()
+    val answerBringIntoViewRequester = remember {
+        BringIntoViewRequester()
+    }
+
     val testWords = remember(dictionaries) {
         dictionaries
             .flatMap { dictionary ->
@@ -1101,6 +1179,8 @@ fun TestRunScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
+                .imePadding()
+                .navigationBarsPadding()
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
@@ -1152,6 +1232,8 @@ fun TestRunScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
+            .imePadding()
+            .navigationBarsPadding()
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
@@ -1189,10 +1271,24 @@ fun TestRunScreen(
 
         item {
             OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .bringIntoViewRequester(answerBringIntoViewRequester)
+                    .onFocusChanged { focusState ->
+                        if (focusState.isFocused) {
+                            scope.launch {
+                                delay(300)
+                                answerBringIntoViewRequester.bringIntoView()
+                            }
+                        }
+                    },
                 value = answer,
                 onValueChange = {
                     answer = it
+
+                    scope.launch {
+                        answerBringIntoViewRequester.bringIntoView()
+                    }
                 },
                 singleLine = true,
                 label = {
@@ -1415,7 +1511,13 @@ fun parseGithubIndex(text: String): List<Pair<String, String>> {
 }
 
 fun downloadText(url: String): String {
-    val connection = URL(url).openConnection() as HttpURLConnection
+    val trimmedUrl = url.trim()
+
+    require(trimmedUrl.startsWith("https://raw.githubusercontent.com/")) {
+        "Link musi być RAW z raw.githubusercontent.com"
+    }
+
+    val connection = URL(trimmedUrl).openConnection() as HttpURLConnection
 
     connection.requestMethod = "GET"
     connection.connectTimeout = 12_000
@@ -1425,7 +1527,7 @@ fun downloadText(url: String): String {
         val code = connection.responseCode
 
         if (code !in 200..299) {
-            error("HTTP $code for $url")
+            error("HTTP $code dla adresu: $trimmedUrl")
         }
 
         BufferedReader(InputStreamReader(connection.inputStream)).use { reader ->
