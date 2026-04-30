@@ -1,0 +1,12 @@
+lekarz:physician
+psychiatryczny:psychiatric
+puls, tętno:pulse
+wrażliwość:sensitivity
+gwałtowny wzrost; wzrosnąć:surge
+chirurgiczny:surgical
+syndrom, zespół:syndrome
+trauma, uraz:trauma
+podatność, wrażliwość:vulnerability
+podatny, narażony:vulnerable
+dobrostan, samopoczucie:well-being
+trening:workout

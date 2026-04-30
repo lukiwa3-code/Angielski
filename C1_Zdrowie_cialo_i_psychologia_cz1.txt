@@ -1,0 +1,20 @@
+ostry, nagły:acute
+nastolatek, młodzieniec:adolescent
+uczucie, czułość:affection
+agresja, napaść:aggression
+apetyt, pragnienie:appetite
+świadomość:consciousness
+poradnictwo, terapia:counselling
+diagnozować:diagnose
+diagnoza:diagnosis
+dawka:dose
+utopić się, utonąć:drown
+ego:ego
+zakłopotanie, wstyd:embarrassment
+epidemia:epidemic
+żal, rozpacz:grief
+wina, poczucie winy:guilt
+jelito, instynkt:gut
+nękanie, molestowanie:harassment
+nienawiść:hatred
+wrogi:hostile

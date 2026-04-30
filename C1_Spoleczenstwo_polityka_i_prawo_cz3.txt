@@ -1,0 +1,20 @@
+uprzejmość, grzeczność:courtesy
+opieka, areszt:custody
+podejmowanie decyzji:decision-making
+delegacja:delegation
+wyborczy:electoral
+wada, skaza:flaw
+sądowy:judicial
+jurysdykcja:jurisdiction
+pozew, sprawa sądowa:lawsuit
+ustawodawstwo, prawo:legislation
+ustawodawczy:legislative
+legislatura, organ ustawodawczy:legislature
+mandat, upoważnienie:mandate
+ministerstwo:ministry
+miejski, komunalny:municipal
+parlamentarny:parliamentary
+patron, stały klient:patron
+petycja:petition
+prośba, apel; przyznanie się:plea
+błagać, przyznać się:plead

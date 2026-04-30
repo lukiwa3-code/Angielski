@@ -1,0 +1,20 @@
+filtr; filtrować:filter
+wzór, formuła:formula
+sformułować:formulate
+sprzęt komputerowy, osprzęt:hardware
+ideologiczny:ideological
+wdrożenie, realizacja:implementation
+zastrzyk, wstrzyknięcie:injection
+wstawienie, wprowadzenie:insertion
+kontrolować, sprawdzać:inspect
+kontrola, inspekcja:inspection
+instytucjonalny:institutional
+instruować, polecać:instruct
+kluczowy, instrumentalny:instrumental
+interaktywny:interactive
+interfejs:interface
+laser:laser
+układ, rozkład:layout
+liniowy:linear
+logika:logic
+metodologia:methodology

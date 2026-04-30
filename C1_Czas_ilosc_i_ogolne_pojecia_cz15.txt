@@ -1,0 +1,20 @@
+personel:personnel
+filozof:philosopher
+pirat:pirate
+dół, jama:pit
+sondaż, głosowanie:poll
+portfolio, teczka:portfolio
+praktyk, specjalista:practitioner
+precyzja:precision
+drapieżnik:predator
+poprzednik:predecessor
+przeważnie, głównie:predominantly
+ciąża:pregnancy
+premier, czołowy:premier
+założenie, przesłanka:premise
+recepta, zalecenie:prescription
+obecnie, wkrótce:presently
+ochrona, zachowanie:preservation
+przypuszczalnie:presumably
+powszechność, występowanie:prevalence
+zapobieganie, prewencja:prevention

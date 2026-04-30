@@ -1,0 +1,20 @@
+koalicja:coalition
+kolonialny:colonial
+komisarz:commissioner
+komunistyczny; komunista:communist
+kongresowy:congressional
+konsensus, zgoda:consensus
+zgoda; zgadzać się:consent
+okręg wyborczy, elektorat:constituency
+konstytucja, ustrój:constitution
+konstytucyjny:constitutional
+konsultacja:consultation
+pogarda, lekceważenie:contempt
+wykonawca, kontraktor:contractor
+skazać:convict
+przekonanie, wyrok skazujący:conviction
+korupcja, zepsucie:corruption
+radny:councillor
+doradca, terapeuta:counsellor
+odpowiednik:counterpart
+zamach stanu, przewrót:coup

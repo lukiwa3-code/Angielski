@@ -1,0 +1,20 @@
+akademia, szkoła:academy
+aparatura, urządzenie:apparatus
+archiwum:archive
+punkt odniesienia, wzorzec:benchmark
+przeglądarka:browser
+obliczenie, kalkulacja:calculation
+płótno, kanwa:canvas
+katalog; katalogować:catalogue
+poznawczy:cognitive
+kompilować, opracowywać:compile
+obliczać:compute
+konfiguracja, układ:configuration
+korelacja, współzależność:correlation
+pulpit, komputer stacjonarny:desktop
+dokumentacja:documentation
+domena, obszar:domain
+empiryczny:empirical
+równanie	erect	wznosić, postawić:equation
+eksperymentalny:experimental
+wydział, zdolność:faculty

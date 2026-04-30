@@ -1,0 +1,20 @@
+wrogość:hostility
+ludzkość, człowieczeństwo:humanity
+skromny, pokorny:humble
+nieumiejętność, niezdolność:inability
+niewystarczający, nieodpowiedni:inadequate
+nieodpowiedni:inappropriate
+niemowlę:infant
+zarażać, zakażać:infect
+więzień, osadzony:inmate
+instynkt:instinct
+intensywny:intensive
+intymny, bliski:intimate
+nerka:kidney
+wątroba:liver
+medytacja:meditation
+nędza, cierpienie:misery
+mieć obsesję:obsess
+obsesja:obsession
+ustny, doustny:oral
+rodzicielski:parental

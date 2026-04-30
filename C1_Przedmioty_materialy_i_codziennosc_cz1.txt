@@ -1,0 +1,20 @@
+kotwica; zakotwiczyć:anchor
+beczka, lufa:barrel
+bas, okoń:bass
+uderzać, odbijać:bat
+belka, promień:beam
+ostrze, łopatka:blade
+kryształ:crystal
+oprawa, element stały; mecz:fixture
+sprzęt, bieg:gear
+róg, klakson:horn
+maska:mask
+podkładka, notes; lądowisko:pad
+łatka, skrawek; łatać:patch
+wtyczka; podłączyć:plug
+słup, biegun:pole
+pręt, kij:rod
+śruba; przykręcać:screw
+pieczęć; uszczelnić:seal
+szczelina, przedział czasowy:slot
+okaz, próbka:specimen

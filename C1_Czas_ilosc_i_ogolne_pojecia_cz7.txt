@@ -1,0 +1,20 @@
+wymiar:dimension
+dyplomata:diplomat
+dyplomatyczny:diplomatic
+katalog, spis:directory
+ujawnienie:disclosure
+dyskurs, rozmowa:discourse
+dyskrecja, swoboda decyzji:discretion
+dyskryminacja:discrimination
+zwolnienie, odrzucenie:dismissal
+pozbycie się, dyspozycja:disposal
+zakłócenie, przerwa:disruption
+różnica, wyróżnienie:distinction
+doktryna:doctrine
+dominacja:dominance
+darczyńca, dawca:donor
+podwójny:dual
+duet:duo
+dynamika, siła napędowa:dynamic
+nauczyciel, pedagog:educator
+skuteczność:effectiveness

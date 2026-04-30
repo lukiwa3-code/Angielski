@@ -1,0 +1,20 @@
+akr:acre
+rolniczy:agricultural
+zatoka:bay
+bydło:cattle
+nadmorski, przybrzeżny:coastal
+miedź:copper
+zapora, tama:dam
+świt, początek:dawn
+gruz, szczątki:debris
+ekologiczny:ecological
+włókno, błonnik:fibre
+ciało, miąższ:flesh
+płyn:fluid
+galon:gallon
+grób:grave (for dead person)
+grawitacja, powaga:gravity
+siatka, sieć:grid
+żniwa, zbiór; zbierać:harvest
+dziedzictwo:heritage
+ojczyzna:homeland

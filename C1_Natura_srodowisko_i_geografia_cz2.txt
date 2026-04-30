@@ -1,0 +1,17 @@
+horyzont:horizon
+część kontynentalna:mainland
+morski:marine
+gniazdo:nest
+szczyt:peak
+chłop, wieśniak:peasant
+staw:pond
+prowincja:province
+prowincjonalny:provincial
+promień:ray
+pozostałość, osad:residue
+przypływ, fala:tide
+drewno:timber
+tytoń:tobacco
+plemienny:tribal
+żyła, żyłka:vein
+chwast:weed

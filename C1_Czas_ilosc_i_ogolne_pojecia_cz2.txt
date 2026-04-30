@@ -1,0 +1,20 @@
+sojusznik, sprzymierzeniec:ally
+aluminium:aluminium
+wśród, pośród:amid
+uznanie, docenienie:appreciation
+prawdopodobnie, można twierdzić że:arguably
+układ, szereg:array
+popiół:ash
+aspiracja, dążenie:aspiration
+zgromadzenie, montaż:assembly
+twierdzenie, zapewnienie:assertion
+pewność, zapewnienie:assurance
+obecność, frekwencja:attendance
+samochód, auto:auto
+autonomia, samodzielność:autonomy
+dostępność:availability
+poparcie, wsparcie:backing
+kopia zapasowa, wsparcie:backup
+transparent, baner:banner
+bestia, zwierzę:beast
+imieniu, korzyść:behalf

@@ -1,0 +1,10 @@
+sfera, kula:sphere
+kręgosłup:spine
+pasek, pasmo:strip (long narrow piece)
+apartament, pakiet programów:suite
+nić, wątek:thread
+znak towarowy:trademark
+przyczepa, zwiastun:trailer
+próżnia, odkurzacz:vacuum
+statek, naczynie:vessel
+bicz; chłostać:whip

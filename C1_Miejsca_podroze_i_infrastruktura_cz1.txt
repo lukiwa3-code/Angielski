@@ -1,0 +1,20 @@
+arena, obszar działania:arena
+tło, kontekst:backdrop
+szafka, gabinet:cabinet
+ładunek, towar:cargo
+powóz, wagon:carriage
+kasyno:casino
+cmentarz:cemetery
+komora, izba:chamber
+ambasada:embassy
+skrzyżowanie, węzeł:junction
+właściciel wynajmujący, gospodarz:landlord
+punkt orientacyjny, przełom:landmark
+trawnik:lawn
+parafia:parish
+ścieżka, droga:pathway
+patrol; patrolować:patrol
+mieszkalny:residential
+teren:terrain
+tranzyt, przewóz:transit
+mieszkaniec wsi:villager

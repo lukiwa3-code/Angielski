@@ -1,0 +1,6 @@
+nadwyżka:surplus
+transakcja:transaction
+obrót, rotacja:turnover
+użyteczność, narzędzie:utility
+przedsięwzięcie; zaryzykować:venture
+magazyn:warehouse

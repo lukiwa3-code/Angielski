@@ -1,0 +1,20 @@
+potwierdzenie:confirmation
+zgromadzenie, wspólnota:congregation
+sumienie:conscience
+spójność, konsekwencja:consistency
+ograniczenie:constraint
+pretendent, rywal:contender
+spór, twierdzenie:contention
+ciągle, nieustannie:continually
+sprzeczność:contradiction
+współautor, darczyńca:contributor
+konwersja, przekształcenie:conversion
+koordynacja:coordination
+koordynator:coordinator
+glina, policjant:cop
+poprawka, korekta:correction
+korespondencja, zgodność:correspondence
+korespondent:correspondent
+twórca:creator
+wiarygodność:credibility
+ciekawość:curiosity

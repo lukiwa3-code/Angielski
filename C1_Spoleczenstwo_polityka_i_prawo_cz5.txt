@@ -1,0 +1,9 @@
+radca prawny, prawnik:solicitor
+suwerenność:sovereignty
+podatnik:taxpayer
+zeznanie, świadectwo:testimony
+traktat, umowa:treaty
+trybunał:tribunal
+powiernik, kurator:trustee
+werdykt, wyrok:verdict
+nakaz, uzasadniać:warrant

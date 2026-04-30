@@ -1,0 +1,17 @@
+optyczny:optical
+parametr:parameter
+patent:patent
+rurociąg, kanał projektów:pipeline
+protokół:protocol
+radar:radar
+układ, konfiguracja:set-up
+symulacja:simulation
+specyfikacja:specification
+widmo, zakres:spectrum
+statystyczny:statistical
+synteza:synthesis
+systematyczny:systematic
+teoretyczny:theoretical
+transkrypcja, odpis:transcript
+transmisja, przekaz:transmission
+zweryfikować, sprawdzić:verify

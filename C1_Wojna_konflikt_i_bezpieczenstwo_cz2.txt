@@ -1,0 +1,20 @@
+ludobójstwo:genocide
+partyzant, partyzantka:guerrilla
+zakładnik:hostage
+uwięzienie, kara więzienia:imprisonment
+porwać:kidnap
+śmiertelny:lethal
+masakra:massacre
+bojownik; wojujący:militant
+milicja, oddziały ochotnicze:militia
+pocisk, rakieta:missile
+powojenny:post-war
+nalot, obława; najechać:raid
+buntownik, rebeliant:rebel
+bunt, rebelia:rebellion
+karabin:rifle
+zamieszki:riot
+niewolnictwo:slavery
+dźgnąć, pchnięcie nożem:stab
+poddać się, oddać:surrender
+nadzór, obserwacja:surveillance

@@ -1,0 +1,20 @@
+ofiara, łup:prey
+dyrektor, zleceniodawca; główny:principal
+propozycja, twierdzenie:proposition
+postanowienie, zaopatrzenie:provision
+zapytanie:query
+wyprawa, poszukiwanie:quest
+wściekłość:rage
+ranking, klasyfikacja:ranking
+stosunek, proporcja:ratio
+chętnie, łatwo:readily
+uświadomienie, realizacja:realization
+dziedzina, królestwo:realm
+rozumowanie:reasoning
+odbiorca, adresat:recipient
+rekonstrukcja, odbudowa:reconstruction
+odbicie, refleksja:reflection
+schonienie, azyl:refuge
+odmowa:refusal
+bez względu na:regardless
+odrzucenie, odmowa:rejection

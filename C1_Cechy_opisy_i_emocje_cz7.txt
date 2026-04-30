@@ -1,0 +1,20 @@
+bardzo mały, drobny:minute
+mylący, wprowadzający w błąd:misleading
+umiarkowany:moderate
+wzajemny:mutual
+morski, marynarki wojennej:naval
+sąsiedni:neighbouring
+netto, końcowy:net
+szlachetny:noble
+godny uwagi:notable
+niesławny:notorious
+okazjonalny, sporadyczny:occasional
+operacyjny, działający:operational
+organizacyjny:organizational
+przytłaczający, ogromny:overwhelming
+częściowy, stronniczy:partial
+bierny, pasywny:passive
+dziwny, osobliwy:peculiar
+uporczywy, trwały:persistent
+filozoficzny:philosophical
+wstępny, przygotowawczy:preliminary

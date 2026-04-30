@@ -1,0 +1,20 @@
+śledczy, badacz:investigator
+rynek, platforma handlowa:marketplace
+kupiec, handlarz:merchant
+monopol:monopoly
+non-profit, niedochodowy:non-profit
+premia, składka; luksusowy:premium
+prywatyzacja:privatization
+wpływy, dochód:proceeds
+przetwarzanie, obróbka:processing
+procesor:processor
+produktywny:productive
+produktywność:productivity
+rentowny, opłacalny:profitable
+prognoza, projekcja:projection
+dobrobyt:prosperity
+limit, kwota:quota
+wynajem, czynsz:rental
+reprodukcja, rozmnażanie:reproduction
+akcjonariusz:shareholder
+dotacja, subsydium:subsidy
