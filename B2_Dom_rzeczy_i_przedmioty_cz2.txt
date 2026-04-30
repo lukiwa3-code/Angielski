@@ -1,0 +1,19 @@
+drabina:ladder
+śmieci, miot:litter
+marker, znacznik:marker
+notatnik, zeszyt:notebook
+strój, zestaw ubrań:outfit
+paczka, pakiet:packet
+porcja, część:portion
+białko:protein
+zagadka, łamigłówka:puzzle
+szczur:rat
+rakieta:rocket
+przyprawa:spice
+para:steam
+etykieta, oznaczać:tag
+kran, stuknąć:tap
+terminal, końcówka:terminal
+tona:ton
+tona metryczna:tonne
+pułapka, uwięzić:trap

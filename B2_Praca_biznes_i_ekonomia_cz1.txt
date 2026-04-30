@@ -1,0 +1,20 @@
+księgowy, księgowa:accountant
+analityk, analityczka:analyst
+kandydat, aplikant:applicant
+atut, aktywa:asset
+aukcja, licytacja:auction
+okazja, targowanie się:bargain
+oferta, licytować:bid
+rezerwacja:booking
+korporacja, spółka:corporation
+dealer, handlarz:dealer
+depozyt, zaliczka:deposit
+ekonomia:economics
+ekonomista:economist
+przedsiębiorca:entrepreneur
+założyciel:founder
+oszustwo:fraud
+sklep spożywczy, artykuły spożywcze:grocery
+siedziba główna, centrala:headquarters
+zachęta, bodziec:incentive
+inflacja:inflation

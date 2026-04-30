@@ -1,0 +1,20 @@
+hipoteza:hypothesis
+ikona:icon
+dowód tożsamości, identyfikator:ID
+indeks, wskaźnik:index
+informacja, info:info
+infrastruktura:infrastructure
+innowacja:innovation
+innowacyjny:innovative
+wkład, dane wejściowe:input
+wstawiać, wkładać:insert
+instalacja, montaż:installation
+natychmiastowy:instant
+natychmiast:instantly
+integrować, włączyć:integrate
+wchodzić w interakcję:interact
+interakcja:interaction
+przedział, odstęp:interval
+soczewka, obiektyw:lens
+oświetlenie:lighting
+litr:litre

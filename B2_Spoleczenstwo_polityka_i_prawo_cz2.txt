@@ -1,0 +1,19 @@
+protestujący:protester
+rasowy:racial
+rasizm:racism
+rasistowski, rasista:racist
+uchodźca:refugee
+rejestracja:registration
+regulować:regulate
+ograniczać:restrict
+ograniczenie:restriction
+skandal:scandal
+osadnik:settler
+terytorium, obszar:territory
+terroryzm:terrorism
+terrorysta:terrorist
+kradzież:theft
+plemię:tribe
+oddział, wojsko:troop
+głosowanie:voting
+dobrobyt, opieka społeczna:welfare

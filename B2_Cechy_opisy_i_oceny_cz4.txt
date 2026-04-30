@@ -1,0 +1,20 @@
+nagi:naked
+wstrętny, złośliwy:nasty
+neutralny:neutral
+optymistyczny:optimistic
+wybitny, zaległy:outstanding
+równoległy, równoleżnik:parallel
+pełen pasji, namiętny:passionate
+cenny, drogocenny:precious
+precyzyjny, dokładny:precise
+przewidywalny:predictable
+główny, najważniejszy:principal
+postępowy, progresywny:progressive
+obiecujący:promising
+losowy, przypadkowy:random
+niezwykły, godny uwagi:remarkable
+śmieszny, absurdalny:ridiculous
+ryzykowny:risky
+seksowny:sexy
+ukształtowany, w kształcie:shaped
+szokujący:shocking

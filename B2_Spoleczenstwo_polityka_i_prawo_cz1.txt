@@ -1,0 +1,20 @@
+stronniczość, uprzedzenie:bias
+bombardowanie, zamach bombowy:bombing
+cywilizacja:civilization
+kolonia:colony
+dowódca:commander
+demokracja:democracy
+demokratyczny:democratic
+demonstracja, pokaz:demonstration
+imperium, cesarstwo:empire
+etniczny:ethnic
+federalny:federal
+gubernator:governor
+imigracja:immigration
+niepodległość, niezależność:independence
+najechać, wtargnąć:invade
+inwazja, najazd:invasion
+więzienie, uwięzić:jail
+ława przysięgłych, jury:jury
+burmistrz, prezydent miasta:mayor
+sprawca, przestępca:offender
