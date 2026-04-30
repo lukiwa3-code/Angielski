@@ -452,7 +452,7 @@ fun WordTrainerApp() {
                     }
                 )
 
-````````````````is AppScreen.Learn -> LearningScreen(
+is AppScreen.Learn -> LearningScreen(
     dictionary = currentScreen.dictionary,
     settings = settings,
     store = store,
@@ -568,27 +568,7 @@ fun HomeScreen(
             }
         }
 
-        item {
-            SectionTitle("Kreatywne słowniki błędów")
-        }
 
-        if (creativeDictionaries.isEmpty()) {
-            item {
-                Text("Na razie brak błędnie odpowiedzianych słówek.")
-            }
-        } else {
-            items(creativeDictionaries) { dictionary ->
-                DictionaryCard(
-                    dictionary = dictionary,
-                    completionDate = completedDictionaries[dictionary.id],
-                    onLearn = {
-                        onLearn(dictionary)
-                    }
-                )
-            }
-        }
-    }
-}
 
         item {
             SectionTitle("Kreatywne słowniki błędów")
@@ -921,18 +901,19 @@ fun LearningScreen(
     }
 
     fun activeWords(): List<WordEntry> {
-        fun isFullyMastered(): Boolean {
+    return dictionary.words.filter { word ->
+        val streak = streaks[word.key] ?: 0
+        val hidden = hiddenWords[word.key] == true
+
+        streak < 3 && !hidden
+    }
+}
+
+fun isFullyMastered(): Boolean {
     return dictionary.words.isNotEmpty() && dictionary.words.all { word ->
         (streaks[word.key] ?: 0) >= 3
     }
 }
-        return dictionary.words.filter { word ->
-            val streak = streaks[word.key] ?: 0
-            val hidden = hiddenWords[word.key] == true
-
-            streak < 3 && !hidden
-        }
-    }
 
     fun advance() {
         answer = ""
