@@ -131,40 +131,41 @@ class VocabularyStore(private val context: Context) {
     private val prefs = context.getSharedPreferences("vocabulary_store", Context.MODE_PRIVATE)
 
     fun loadSettings(): AppSettings {
-        val modeName = prefs.getString("sourceMode", SourceMode.GITHUB.name)
-            ?: SourceMode.GITHUB.name
+    val modeName = prefs.getString("sourceMode", SourceMode.GITHUB.name)
+        ?: SourceMode.GITHUB.name
 
-        val savedGithubIndexUrl = prefs.getString("githubIndexUrl", null)
-            ?.trim()
-            .orEmpty()
-            .ifBlank { DEFAULT_GITHUB_INDEX_URL }
+    val savedGithubIndexUrl = prefs.getString("githubIndexUrl", null)
+        ?.trim()
+        .orEmpty()
+        .ifBlank {
+            DEFAULT_GITHUB_INDEX_URL
+        }
 
-        return AppSettings(
-            caseSensitive = prefs.getBoolean("caseSensitive", false),
-            acceptTypos = prefs.getBoolean("acceptTypos", true),
-            sourceMode = runCatching {
-                SourceMode.valueOf(modeName)
-            }.getOrDefault(SourceMode.GITHUB),
-            githubIndexUrl = savedGithubIndexUrl,
-            folderUri = prefs.getString("folderUri", "") ?: ""
-        )
-    }
-
+    return AppSettings(
+        caseSensitive = prefs.getBoolean("caseSensitive", false),
+        acceptTypos = prefs.getBoolean("acceptTypos", true),
+        sourceMode = runCatching {
+            SourceMode.valueOf(modeName)
+        }.getOrDefault(SourceMode.GITHUB),
+        githubIndexUrl = savedGithubIndexUrl,
+        folderUri = prefs.getString("folderUri", "") ?: ""
+    )
+}
     fun saveSettings(settings: AppSettings) {
         val fixedSettings = settings.copy(
-            githubIndexUrl = settings.githubIndexUrl.trim().ifBlank {
-                DEFAULT_GITHUB_INDEX_URL
-            }
-        )
+        githubIndexUrl = settings.githubIndexUrl.trim().ifBlank {
+            DEFAULT_GITHUB_INDEX_URL
+        }
+    )
 
-        prefs.edit()
-            .putBoolean("caseSensitive", fixedSettings.caseSensitive)
-            .putBoolean("acceptTypos", fixedSettings.acceptTypos)
-            .putString("sourceMode", fixedSettings.sourceMode.name)
-            .putString("githubIndexUrl", fixedSettings.githubIndexUrl)
-            .putString("folderUri", fixedSettings.folderUri)
-            .apply()
-    }
+    prefs.edit()
+        .putBoolean("caseSensitive", fixedSettings.caseSensitive)
+        .putBoolean("acceptTypos", fixedSettings.acceptTypos)
+        .putString("sourceMode", fixedSettings.sourceMode.name)
+        .putString("githubIndexUrl", fixedSettings.githubIndexUrl)
+        .putString("folderUri", fixedSettings.folderUri)
+        .apply()
+}
 
     fun loadCreativeWords(): List<WordEntry> {
         val raw = prefs.getString("creativeWords", "[]") ?: "[]"
@@ -583,11 +584,13 @@ fun SettingsScreen(
         mutableStateOf(settings.sourceMode)
     }
 
-    var githubIndexUrl by remember {
-        mutableStateOf(settings.githubIndexUrl.trim().ifBlank {
+var githubIndexUrl by remember {
+    mutableStateOf(
+        settings.githubIndexUrl.trim().ifBlank {
             DEFAULT_GITHUB_INDEX_URL
-        })
-    }
+        }
+    )
+}
 
     var folderUri by remember {
         mutableStateOf(settings.folderUri)
@@ -670,8 +673,8 @@ fun SettingsScreen(
                     Text("URL do index.txt na GitHub/raw")
                 },
                 placeholder = {
-                    Text(DEFAULT_GITHUB_INDEX_URL)
-                }
+    Text(DEFAULT_GITHUB_INDEX_URL)
+}
             )
         }
 
