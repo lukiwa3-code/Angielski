@@ -1,5 +1,7 @@
 package com.example.englishwordstrainer
-
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.ui.text.input.ImeAction
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import android.content.Context
