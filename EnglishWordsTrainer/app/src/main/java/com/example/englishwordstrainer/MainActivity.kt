@@ -999,9 +999,9 @@ fun isFullyMastered(): Boolean {
         )
 
         if (correct) {
-            streaks[word.key] = (streaks[word.key] ?: 0) + 1
-            message = "Dobrze ✔️ Licznik: ${streaks[word.key]}/3"
-        } else {
+    streaks[word.key] = (streaks[word.key] ?: 0) + 1
+    message = "Tak, ${word.polish} to ${word.english} ✔️ Licznik: ${streaks[word.key]}/3"
+} else {
             streaks[word.key] = 0
             store.addWrongWord(word)
             onCreativeChanged()
@@ -1110,48 +1110,71 @@ fun isFullyMastered(): Boolean {
             }
 
             item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .bringIntoViewRequester(answerBringIntoViewRequester),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    OutlinedTextField(
-                        modifier = Modifier
-                            .weight(1f)
-                            .onFocusChanged { focusState ->
-                                if (focusState.isFocused) {
-                                    scope.launch {
-                                        delay(300)
-                                        answerBringIntoViewRequester.bringIntoView()
-                                    }
-                                }
-                            },
-                        value = answer,
-                        onValueChange = {
-                            answer = it
-
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .bringIntoViewRequester(answerBringIntoViewRequester),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            OutlinedTextField(
+                modifier = Modifier
+                    .weight(1f)
+                    .onFocusChanged { focusState ->
+                        if (focusState.isFocused) {
                             scope.launch {
+                                delay(300)
                                 answerBringIntoViewRequester.bringIntoView()
                             }
-                        },
-                        singleLine = true,
-                        label = {
-                            Text("Twoja odpowiedź")
                         }
-                    )
+                    },
+                value = answer,
+                onValueChange = {
+                    answer = it
 
-                    OutlinedButton(
-                        onClick = {
-                            hideCurrentWord()
-                        }
-                    ) {
-                        Text("Nie pokazuj więcej")
+                    scope.launch {
+                        answerBringIntoViewRequester.bringIntoView()
                     }
-                }
-            }
+                },
+                singleLine = true,
+                label = {
+                    Text("Twoja odpowiedź")
+                },
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        if (answer.isNotBlank()) {
+                            submitAnswer()
+                        }
+                    }
+                )
+            )
 
+            Button(
+                onClick = {
+                    submitAnswer()
+                },
+                enabled = answer.isNotBlank()
+            ) {
+                Text("Sprawdź")
+            }
+        }
+
+        OutlinedButton(
+            onClick = {
+                hideCurrentWord()
+            }
+        ) {
+            Text("Nie pokazuj więcej")
+        }
+    }
+}
             item {
                 Button(
                     onClick = {
@@ -1294,6 +1317,9 @@ fun TestRunScreen(
     var correctCount by remember {
         mutableIntStateOf(0)
     }
+    var message by remember {
+    mutableStateOf("")
+}
 
     val wrongAnswers = remember {
         mutableStateListOf<TestWrongAnswer>()
@@ -1311,18 +1337,21 @@ fun TestRunScreen(
         )
 
         if (correct) {
-            correctCount++
-        } else {
-            wrongAnswers += TestWrongAnswer(
-                word = word,
-                userAnswer = answer
-            )
+    correctCount++
+    message = "Tak, ${word.polish} to ${word.english} ✔️"
+} else {
+    message = "Nie, ${word.polish} to ${word.english} ❗ Twoja odpowiedź: $answer"
 
-            store.addWrongWord(word)
-        }
+    wrongAnswers += TestWrongAnswer(
+        word = word,
+        userAnswer = answer
+    )
 
-        answer = ""
-        currentIndex++
+    store.addWrongWord(word)
+}
+
+answer = ""
+currentIndex++
     }
 
     if (testWords.isEmpty()) {
@@ -1429,44 +1458,67 @@ fun TestRunScreen(
             }
         }
 
-        item {
-            OutlinedTextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .bringIntoViewRequester(answerBringIntoViewRequester)
-                    .onFocusChanged { focusState ->
-                        if (focusState.isFocused) {
-                            scope.launch {
-                                delay(300)
-                                answerBringIntoViewRequester.bringIntoView()
-                            }
-                        }
-                    },
-                value = answer,
-                onValueChange = {
-                    answer = it
+        
 
-                    scope.launch {
-                        answerBringIntoViewRequester.bringIntoView()
+item {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .bringIntoViewRequester(answerBringIntoViewRequester),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        OutlinedTextField(
+            modifier = Modifier
+                .weight(1f)
+                .onFocusChanged { focusState ->
+                    if (focusState.isFocused) {
+                        scope.launch {
+                            delay(300)
+                            answerBringIntoViewRequester.bringIntoView()
+                        }
                     }
                 },
-                singleLine = true,
-                label = {
-                    Text("Twoja odpowiedź")
+            value = answer,
+            onValueChange = {
+                answer = it
+
+                scope.launch {
+                    answerBringIntoViewRequester.bringIntoView()
+                }
+            },
+            singleLine = true,
+            label = {
+                Text("Twoja odpowiedź")
+            },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    if (answer.isNotBlank()) {
+                        submit()
+                    }
                 }
             )
-        }
+        )
 
-        item {
-            Button(
-                onClick = {
-                    submit()
-                },
-                enabled = answer.isNotBlank()
-            ) {
-                Text("Dalej")
-            }
+        Button(
+            onClick = {
+                submit()
+            },
+            enabled = answer.isNotBlank()
+        ) {
+            Text("Sprawdź")
         }
+    }
+}
+
+if (message.isNotBlank()) {
+    item {
+        Text(message)
+    }
+}
 
         item {
             OutlinedButton(onClick = onExit) {
