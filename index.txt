@@ -1,3 +1,7 @@
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/drugie_sniadanie_niemiecki_polskie.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/kraje_okreslenia_czasu_niemiecki_polskie.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/jezyki_niemiecki_polskie.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/srodki_transportu_niemiecki_polskie.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/B2_Cechy_opisy_i_oceny_cz1.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/B2_Cechy_opisy_i_oceny_cz2.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/B2_Cechy_opisy_i_oceny_cz3.txt
