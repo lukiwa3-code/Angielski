@@ -1,4 +1,6 @@
 package com.example.englishwordstrainer
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.text.input.ImeAction
@@ -891,9 +893,12 @@ fun LearningScreen(
     onDictionaryCompleted: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
-    val answerBringIntoViewRequester = remember {
-        BringIntoViewRequester()
-    }
+val focusManager = LocalFocusManager.current
+val keyboardController = LocalSoftwareKeyboardController.current
+
+val answerBringIntoViewRequester = remember {
+    BringIntoViewRequester()
+}
 
     val streaks: SnapshotStateMap<String, Int> = remember(dictionary.id) {
         mutableStateMapOf<String, Int>().apply {
@@ -986,30 +991,34 @@ fun isFullyMastered(): Boolean {
     }
 
     fun submitAnswer() {
-        if (completed || roundWords.isEmpty()) {
-            return
-        }
-
-        val word = roundWords[currentIndex]
-
-        val correct = isAnswerCorrect(
-            userAnswer = answer,
-            expectedAnswer = word.english,
-            settings = settings
-        )
-
-        if (correct) {
-    streaks[word.key] = (streaks[word.key] ?: 0) + 1
-    message = "Tak, ${word.polish} to ${word.english} ✔️ Licznik: ${streaks[word.key]}/3"
-} else {
-            streaks[word.key] = 0
-            store.addWrongWord(word)
-            onCreativeChanged()
-            message = "Źle ❗ Poprawna odpowiedź: ${word.english}. Licznik zresetowany."
-        }
-
-        advance()
+    if (completed || roundWords.isEmpty()) {
+        return
     }
+
+    val word = roundWords[currentIndex]
+    val userTypedAnswer = answer.trim()
+
+    keyboardController?.hide()
+    focusManager.clearFocus()
+
+    val correct = isAnswerCorrect(
+        userAnswer = userTypedAnswer,
+        expectedAnswer = word.english,
+        settings = settings
+    )
+
+    if (correct) {
+        streaks[word.key] = (streaks[word.key] ?: 0) + 1
+        message = "Tak, ${word.polish} to ${word.english} ✔️ Licznik: ${streaks[word.key]}/3"
+    } else {
+        streaks[word.key] = 0
+        store.addWrongWord(word)
+        onCreativeChanged()
+        message = "Źle ❗ ${word.polish} to ${word.english}. Twoja odpowiedź: $userTypedAnswer. Licznik zresetowany."
+    }
+
+    advance()
+}
 
     fun hideCurrentWord() {
         if (completed || roundWords.isEmpty()) {
@@ -1290,9 +1299,12 @@ fun TestRunScreen(
     onExit: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
-    val answerBringIntoViewRequester = remember {
-        BringIntoViewRequester()
-    }
+val focusManager = LocalFocusManager.current
+val keyboardController = LocalSoftwareKeyboardController.current
+
+val answerBringIntoViewRequester = remember {
+    BringIntoViewRequester()
+}
 
     val testWords = remember(dictionaries) {
         dictionaries
@@ -1328,31 +1340,35 @@ fun TestRunScreen(
     val finished = currentIndex >= testWords.size
 
     fun submit() {
-        val word = testWords.getOrNull(currentIndex) ?: return
+    val word = testWords.getOrNull(currentIndex) ?: return
+    val userTypedAnswer = answer.trim()
 
-        val correct = isAnswerCorrect(
-            userAnswer = answer,
-            expectedAnswer = word.english,
-            settings = settings
-        )
+    keyboardController?.hide()
+    focusManager.clearFocus()
 
-        if (correct) {
-    correctCount++
-    message = "Tak, ${word.polish} to ${word.english} ✔️"
-} else {
-    message = "Nie, ${word.polish} to ${word.english} ❗ Twoja odpowiedź: $answer"
-
-    wrongAnswers += TestWrongAnswer(
-        word = word,
-        userAnswer = answer
+    val correct = isAnswerCorrect(
+        userAnswer = userTypedAnswer,
+        expectedAnswer = word.english,
+        settings = settings
     )
 
-    store.addWrongWord(word)
-}
+    if (correct) {
+        correctCount++
+        message = "Tak, ${word.polish} to ${word.english} ✔️"
+    } else {
+        message = "Źle ❗ ${word.polish} to ${word.english}. Twoja odpowiedź: $userTypedAnswer"
 
-answer = ""
-currentIndex++
+        wrongAnswers += TestWrongAnswer(
+            word = word,
+            userAnswer = userTypedAnswer
+        )
+
+        store.addWrongWord(word)
     }
+
+    answer = ""
+    currentIndex++
+}
 
     if (testWords.isEmpty()) {
         ResultCard(
@@ -1516,7 +1532,10 @@ item {
 
 if (message.isNotBlank()) {
     item {
-        Text(message)
+        Text(
+            text = message,
+            fontWeight = FontWeight.Bold
+        )
     }
 }
 
