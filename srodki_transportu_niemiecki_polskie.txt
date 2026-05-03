@@ -1,0 +1,22 @@
+samochód:das Auto
+jeździć samochodem:mit dem Auto fahren
+autobus:der Bus
+jeździć autobusem:mit dem Bus fahren
+rower:das Fahrrad
+jeździć rowerem:mit dem Fahrrad fahren
+stopa:der Fuss
+chodzić pieszo:zu Fuss gehen
+koń:das Pferd
+jeździć konno:auf dem Pferd reiten
+praktyczny:praktisch
+punktualny:puenktlich
+kolejka podwieszana:die Schwebebahn
+jeździć kolejką podwieszaną:mit der Schwebebahn fahren
+ulica:die Strasse
+tramwaj:die Strassenbahn
+jeździć tramwajem:mit der Strassenbahn fahren
+metro:die U-Bahn
+jeździć metrem:mit der U-Bahn fahren
+daleko:weit weg
+pociąg:der Zug
+jeździć pociągiem:mit dem Zug fahren

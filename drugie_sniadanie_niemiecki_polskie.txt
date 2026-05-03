@@ -1,0 +1,24 @@
+jabłko:der Apfel
+pojemnik na kanapki, śniadaniówka:die Brotdose
+bułka:das Broetchen
+dawać:geben
+jest/są:es gibt
+Tutaj jest kiosk.:Es gibt hier einen Kiosk.
+zdrowy:gesund
+ogórek:die Gurke
+jogurt:der/die/das Joghurt
+herbatnik:der Keks
+kiosk, sklepik:der Kiosk
+ulubione jedzenie:das Lieblingsessen
+pojemnik na posiłek:die Lunchbox
+woda mineralna:das Mineralwasser
+marchewka:die Moehre
+batonik musli:der Muesliriegel
+orzech:die Nuss
+kanapka na drugie śniadanie:das Pausenbrot
+projekt:das Projekt
+batonik czekoladowy:der Schokoriegel
+pomidor:die Tomate
+pić:trinken
+butelka na napój, bidon:die Trinkflasche
+winogrona:die Weintrauben

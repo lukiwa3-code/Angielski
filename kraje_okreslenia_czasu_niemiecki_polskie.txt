@@ -1,0 +1,9 @@
+Francja:Frankreich
+urodzony:geboren
+Urodził się w Niemczech.:Er ist in Deutschland geboren.
+Kenia:Kenia
+Rosja:Russland
+trwać:dauern
+Jak długo trwa...?:Wie lange dauert ...?
+minuta:die Minute
+godzina:die Stunde

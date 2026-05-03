@@ -1,0 +1,17 @@
+język obcy:die Fremdsprache
+język ojczysty:die Muttersprache
+język:die Sprache
+język niemiecki:Deutsch
+język angielski:Englisch
+język francuski:Franzoesisch
+język włoski:Italienisch
+język japoński:Japanisch
+język polski:Polnisch
+język rosyjski:Russisch
+język hiszpański:Spanisch
+język suahili:Suaheli
+język turecki:Tuerkisch
+język ukraiński:Ukrainisch
+rozmawiać, mówić:sprechen
+Czy mówisz po hiszpańsku?:Sprichst du Spanisch?
+Tutaj mówi się po niemiecku.:Hier spricht man Deutsch.
