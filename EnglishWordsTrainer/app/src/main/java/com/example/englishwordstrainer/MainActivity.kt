@@ -1,5 +1,7 @@
 package com.example.englishwordstrainer
 
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -303,67 +305,99 @@ fun WordTrainerApp() {
     var completedDictionaries by remember {
     mutableStateOf(store.loadCompletedDictionaries())
     }
+    var dictionaryLoadJob by remember {
+    mutableStateOf<Job?>(null)
+}
 
-    fun reloadDictionariesWith(newSettings: AppSettings) {
-        scope.launch {
-            loading = true
-            status = "Ładowanie słowników..."
+fun reloadDictionariesWith(
+    newSettings: AppSettings,
+    allowDuringLearning: Boolean = false
+) {
+    dictionaryLoadJob?.cancel()
 
-            val fixedSettings = newSettings.copy(
-                githubIndexUrl = newSettings.githubIndexUrl.trim().ifBlank {
-                    DEFAULT_GITHUB_INDEX_URL
-                }
+    dictionaryLoadJob = scope.launch {
+        val canStartReload =
+            allowDuringLearning ||
+                screen == AppScreen.Home ||
+                screen == AppScreen.Settings
+
+        if (!canStartReload) {
+            return@launch
+        }
+
+        loading = true
+        status = "Ładowanie słowników..."
+
+        val fixedSettings = newSettings.copy(
+            githubIndexUrl = newSettings.githubIndexUrl.trim().ifBlank {
+                DEFAULT_GITHUB_INDEX_URL
+            }
+        )
+
+        val result = runCatching {
+            loadDictionaries(
+                context = context,
+                settings = fixedSettings
             )
+        }
 
-            val result = runCatching {
-                loadDictionaries(
-                    context = context,
-                    settings = fixedSettings
-                )
+        if (result.exceptionOrNull() is CancellationException) {
+            loading = false
+            return@launch
+        }
+
+        val canUpdateUi =
+            allowDuringLearning ||
+                screen == AppScreen.Home ||
+                screen == AppScreen.Settings
+
+        if (!canUpdateUi) {
+            loading = false
+            return@launch
+        }
+
+        result
+            .onSuccess { loadedDictionaries ->
+                dictionaries = loadedDictionaries
+
+                status = if (loadedDictionaries.isEmpty()) {
+                    when (fixedSettings.sourceMode) {
+                        SourceMode.GITHUB -> {
+                            "Nie znaleziono słowników. Sprawdź link RAW do index.txt."
+                        }
+
+                        SourceMode.FOLDER -> {
+                            "Nie znaleziono plików .txt w wybranym folderze."
+                        }
+                    }
+                } else {
+                    "Załadowano słowników: ${loadedDictionaries.size}"
+                }
+            }
+            .onFailure { error ->
+                dictionaries = emptyList()
+
+                status = buildString {
+                    append("Nie udało się załadować słowników. ")
+
+                    when (fixedSettings.sourceMode) {
+                        SourceMode.GITHUB -> {
+                            append("Sprawdź, czy link prowadzi do RAW index.txt. ")
+                        }
+
+                        SourceMode.FOLDER -> {
+                            append("Sprawdź wybrany folder. ")
+                        }
+                    }
+
+                    append("Błąd: ")
+                    append(error.message ?: error::class.java.simpleName)
+                }
             }
 
-            result
-                .onSuccess { loadedDictionaries ->
-                    dictionaries = loadedDictionaries
-
-                    status = if (loadedDictionaries.isEmpty()) {
-                        when (fixedSettings.sourceMode) {
-                            SourceMode.GITHUB -> {
-                                "Nie znaleziono słowników. Sprawdź link RAW do index.txt."
-                            }
-
-                            SourceMode.FOLDER -> {
-                                "Nie znaleziono plików .txt w wybranym folderze."
-                            }
-                        }
-                    } else {
-                        "Załadowano słowników: ${loadedDictionaries.size}"
-                    }
-                }
-                .onFailure { error ->
-                    dictionaries = emptyList()
-
-                    status = buildString {
-                        append("Nie udało się załadować słowników. ")
-
-                        when (fixedSettings.sourceMode) {
-                            SourceMode.GITHUB -> {
-                                append("Sprawdź, czy link prowadzi do RAW index.txt. ")
-                            }
-
-                            SourceMode.FOLDER -> {
-                                append("Sprawdź wybrany folder. ")
-                            }
-                        }
-
-                        append("Błąd: ")
-                        append(error.message ?: error::class.java.simpleName)
-                    }
-                }
-
-            loading = false
-        }
+        loading = false
     }
+}
 
     val folderPicker = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocumentTree()
@@ -423,8 +457,11 @@ fun WordTrainerApp() {
                         screen = AppScreen.Settings
                     },
                     onLearn = { dictionary ->
-                        screen = AppScreen.Learn(dictionary)
-                    },
+    dictionaryLoadJob?.cancel()
+    loading = false
+    status = ""
+    screen = AppScreen.Learn(dictionary)
+},
                     onTest = {
                         screen = AppScreen.TestSetup
                     }
@@ -476,8 +513,11 @@ is AppScreen.Learn -> LearningScreen(
                         screen = AppScreen.Home
                     },
                     onStart = { selectedDictionaries ->
-                        screen = AppScreen.TestRun(selectedDictionaries)
-                    }
+    dictionaryLoadJob?.cancel()
+    loading = false
+    status = ""
+    screen = AppScreen.TestRun(selectedDictionaries)
+}
                 )
 
                 is AppScreen.TestRun -> TestRunScreen(
