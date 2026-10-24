@@ -1,4 +1,5 @@
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/drugie_sniadanie_niemiecki_polskie.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_on_safari.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/kraje_okreslenia_czasu_niemiecki_polskie.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/jezyki_niemiecki_polskie.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/srodki_transportu_niemiecki_polskie.txt
