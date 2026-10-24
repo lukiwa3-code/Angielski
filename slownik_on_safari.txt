@@ -1,0 +1,16 @@
+kangur:kangaroo
+nosorożec:rhino
+gepard:cheetah
+tygrys:tiger
+wieloryb:whale
+goryl:gorilla
+rekin:shark
+jaszczurka:lizard
+wąsy:whiskers
+język:tongue
+pysk:mouth
+zęby:teeth
+ciało:body
+skrzydła:wings
+ogon:tail
+pazury:claws
