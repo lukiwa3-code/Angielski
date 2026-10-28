@@ -1,0 +1,12 @@
+moja głowa:mein Kopf
+moje włosy:meine Haare
+moje oczy:meine Augen
+moje uszy:meine Ohren
+moje zęby:meine Zähne
+moja szyja:mein Hals
+moje plecy:mein Rücken
+mój brzuch:mein Bauch
+moje ramiona:meine Arme
+moje dłonie:meine Hände
+moje nogi:meine Beine
+moje stopy:meine Füße
