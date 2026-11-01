@@ -1,0 +1,26 @@
+fotel:armchair
+rolety:blinds
+żaluzje:blinds
+biblioteczka:bookcase
+szafka:cupboard
+zasłony:curtains
+poduszka:cushion
+lustro:mirror
+dywanik:rug
+półka:shelf
+sofa:sofa
+kanapa:sofa
+ręcznik:towel
+szafa:wardrobe
+umywalka:basin
+wanna:bath
+kuchenka:cooker
+zmywarka:dishwasher
+zamrażarka:freezer
+lodówka:fridge
+grzejnik:heater
+kaloryfer:radiator
+prysznic:shower
+zlew:sink
+kran:tap
+pralka:washing machine
