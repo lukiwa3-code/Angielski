@@ -1,3 +1,4 @@
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_przedmioty_w_domu.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/drugie_sniadanie_niemiecki_polskie.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_on_safari.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/kraje_okreslenia_czasu_niemiecki_polskie.txt
