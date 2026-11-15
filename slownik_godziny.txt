@@ -1,0 +1,20 @@
+godzina : o'clock
+wpół do : half past
+kwadrans po : quarter past
+za kwadrans : quarter to
+po : past
+do : to
+7:00 : seven o'clock
+8:15 : quarter past eight
+9:30 : half past nine
+10:45 : quarter to eleven
+6:30 : half past six
+wpół do piątej : half past four
+wpół do ósmej : half past seven
+wpół do jedenastej : half past ten
+za kwadrans siódma : quarter to seven
+za kwadrans dziesiąta : quarter to ten
+za kwadrans trzecia : quarter to three
+kwadrans po dziewiątej : quarter past nine
+kwadrans po czwartej : quarter past four
+kwadrans po dwunastej : quarter past twelve
