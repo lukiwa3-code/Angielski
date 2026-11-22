@@ -2,6 +2,7 @@ https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_przedmioty
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slowka_czynnosci(1).txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_godziny.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/krolowie_polski.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_niemiecki_zakupy.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/drugie_sniadanie_niemiecki_polskie.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_on_safari.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/kraje_okreslenia_czasu_niemiecki_polskie.txt
