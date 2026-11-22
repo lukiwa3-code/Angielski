@@ -1,0 +1,9 @@
+Co sprzedajesz?:Was verkaufst du?
+Sprzedaję:Ich verkaufe
+Kupuję:Ich kaufe
+Ile kosztuje?:Was kostet?
+Ale to drogie:Das ist aber teuer
+Ale to jest tanie:Das ist aber billig
+Daję ci:Ich gebe dir
+Biorę:Ich nehme
+Kto da więcej?:Wer gibt mehr?
