@@ -1,6 +1,8 @@
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_przedmioty_w_domu.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slowka_czynnosci(1).txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_godziny.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_1_wakacje_bez_liczby_mnogiej.txt
+https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_1_wakacje_bez_liczby_mnogiej.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/krolowie_polski.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/slownik_niemiecki_zakupy.txt
 https://raw.githubusercontent.com/lukiwa3-code/Angielski/main/drugie_sniadanie_niemiecki_polskie.txt
