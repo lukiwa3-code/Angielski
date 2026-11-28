@@ -1,0 +1,28 @@
+dworzec:der Bahnhof
+lodziarnia:das Eiscafé
+kino:das Kino
+kościół:die Kirche
+szpital:das Krankenhaus
+rynek:der Marktplatz
+muzeum:das Museum
+park:der Park
+poczta:die Post
+basen:das Schwimmbad
+jezioro:der See
+teatr:das Theater
+las:der Wald
+droga:der Weg
+prosto:geradeaus
+Idziesz prosto do ulicy Seestraße.:Du gehst geradeaus zur Seestraße.
+dochodzić:kommen
+Jak dojdę do dworca?:Wie komme ich zum Bahnhof?
+na lewo, po lewej stronie:links
+na prawo, po prawej stronie:rechts
+padać (o deszczu):regnen
+Pada deszcz.:Es regnet.
+Jest zimno / ciepło / gorąco.:Es ist kalt / warm / heiß.
+świecić (o słońcu):scheinen
+Słońce świeci.:Die Sonne scheint.
+pogoda:das Wetter
+Jaka jest pogoda?:Wie ist das Wetter?
+Pogoda jest wspaniała.:Das Wetter ist super.
